@@ -7,8 +7,9 @@ function getAuthor($id) {
     $sth = $PDO->prepare("SELECT first_name, name FROM authors WHERE id_author = :id");
 
     $sth->execute(array('id' => $id));
-
-    return $sth->fetch(PDO::FETCH_ASSOC);
+    
+    $result = $sth->fetch(PDO::FETCH_ASSOC);
+    return $result;
 }
 
 
