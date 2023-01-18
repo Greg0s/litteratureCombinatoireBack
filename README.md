@@ -14,3 +14,15 @@ git submodule update
 ```
 git submodule foreach git pull https://github.com/loicqql/small-php main
 ```
+
+## Fallback index.php
+### For Wamp
+Go to Apache parameters 
+Open httpd.conf
+Add 
+```
+<Directory "${INSTALL_DIR}/www/">
+  ...
+  **FallbackResource /index.php***
+</Directory>
+```
