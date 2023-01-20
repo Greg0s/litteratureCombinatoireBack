@@ -7,6 +7,7 @@ require_once('./small-php/small/small.php');
 require_once('./src/author.php');
 require_once('./src/haiku.php');
 require_once('./src/sonnet.php');
+require_once('./src/tale.php');
 require_once('./src/bristol.php');
 
 $small = new Small();
@@ -37,6 +38,19 @@ $small->get('/sonnet/{num}', function($request, $response) {
 
     if(!$data){
         $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+
+//get random id of tale
+$small->get('/tale', function($request, $response) {
+    $data = getRandomTaleId();
+
+    if(!$data){
+        $response->setData(['error'=>"Erreur tale"]);
     }else{
         $response->setData($data);
     }
