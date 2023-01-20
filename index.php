@@ -49,21 +49,18 @@ $small->get('/sonnet/{num}', function($request, $response) {
     return $response;
 });
 
-<<<<<<< HEAD
 //get random id of tale
 $small->get('/tale', function($request, $response) {
     $data = getRandomTaleId();
 
     if(!$data){
         $response->setData(['error'=>"Erreur tale"]);
-=======
 //get random verse of narration
 $small->get('/narration/{num}', function($request, $response) {
     $data = getRandomNarrationText($request->resource['num']);
 
     if(!$data){
         $response->setData(['error'=>"Le texte n'existe pas"]);
->>>>>>> 8e0394af7ebfc103115e87c3370f6262641af84d
     }else{
         $response->setData($data);
     }
