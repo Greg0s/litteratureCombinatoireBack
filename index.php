@@ -7,11 +7,8 @@ require_once('./small-php/small/small.php');
 require_once('./src/author.php');
 require_once('./src/haiku.php');
 require_once('./src/sonnet.php');
-<<<<<<< HEAD
 require_once('./src/tale.php');
-=======
 require_once('./src/narration.php');
->>>>>>> 8e0394af7ebfc103115e87c3370f6262641af84d
 require_once('./src/bristol.php');
 
 $small = new Small();
@@ -54,7 +51,41 @@ $small->get('/tale', function($request, $response) {
     $data = getRandomTaleId();
 
     if(!$data){
-        $response->setData(['error'=>"Erreur tale"]);
+        $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+
+//get author of tale
+$small->get('/tale/author/{id}', function($request, $response) {
+    $data = getTaleAuthor($request->resource['id']);
+
+    if(!$data){
+        $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+
+//get text of tale
+$small->get('/tale/text/{id}', function($request, $response) {
+    $data = getTaleText($request->resource['id']);
+
+    if(!$data){
+        $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+    
+    
 //get random verse of narration
 $small->get('/narration/{num}', function($request, $response) {
     $data = getRandomNarrationText($request->resource['num']);

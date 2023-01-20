@@ -4,12 +4,21 @@ require_once('init.php');
 
 function getRandomTaleId() {
     $PDO = getPDO();
-    $sth = $PDO->prepare("SELECT id_tale FROM tales ORDER BY RAND() LIMIT 1");
+    $sth = $PDO->prepare("SELECT id_tale, title FROM tales ORDER BY RAND() LIMIT 1");
 
     $sth->execute();
 
     $result = $sth->fetch(PDO::FETCH_ASSOC);
-    echo $result;
+    return $result;
+}
+
+function getTaleAuthor($id) {
+    $PDO = getPDO();
+    $sth = $PDO->prepare("SELECT first_name, name from authors where id_author = (SELECT id_author FROM tales WHERE id_tale = :id)");
+
+    $sth->execute(array('id' => $id));
+    
+    $result = $sth->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
 
@@ -23,11 +32,11 @@ function getTaleTextsIds($id) {
     return $result;
 }
 
-function getTaleText($id, $num){
+function getTaleText($id){
     $PDO = getPDO();
-    $sth = $PDO->prepare("SELECT text FROM taletexts WHERE id_text = :id AND text_num = :num)");
+    $sth = $PDO->prepare("SELECT text FROM taletexts WHERE id_text = :id AND text_num = '1'");
 
-    $sth->execute(array('id' => $id, 'num' => $num));
+    $sth->execute(array('id' => $id));
     
     $result = $sth->fetch(PDO::FETCH_ASSOC);
     return $result; 
