@@ -24,3 +24,13 @@ Go to Apache parameters, open httpd.conf, add
   FallbackResource /index.php
 </Directory>
 ```
+## Access-Control-Allow-Origin
+### For Wamp
+Go to Apache parameters > modules > activate 'headers_module'\
+Then, open httpd.conf, add 
+```
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin: *
+</IfModule>
+```
+*Instead of the * you can also specify a specific domain*
