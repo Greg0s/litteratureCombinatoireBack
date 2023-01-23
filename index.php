@@ -46,9 +46,9 @@ $small->get('/sonnet/{num}', function($request, $response) {
     return $response;
 });
 
-//get random id of tale
+//get random id of tale + its title
 $small->get('/tale', function($request, $response) {
-    $data = getRandomTaleId();
+    $data = getRandomTale();
 
     if(!$data){
         $response->setData(['error'=>"Le texte n'existe pas"]);
@@ -60,8 +60,8 @@ $small->get('/tale', function($request, $response) {
 });
 
 //get author of tale
-$small->get('/tale/author/{id}', function($request, $response) {
-    $data = getTaleAuthor($request->resource['id']);
+$small->get('/tale/author/{id_tale}', function($request, $response) {
+    $data = getTaleAuthor($request->resource['id_tale']);
 
     if(!$data){
         $response->setData(['error'=>"Le texte n'existe pas"]);
@@ -72,9 +72,22 @@ $small->get('/tale/author/{id}', function($request, $response) {
     return $response;
 });
 
-//get text of tale
-$small->get('/tale/text/{id}', function($request, $response) {
-    $data = getTaleText($request->resource['id']);
+//get text by its id_text
+$small->get('/tale/text/{id_text}', function($request, $response) {
+    $data = getTaleText($request->resource['id_text']);
+
+    if(!$data){
+        $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+
+//get choices of text
+$small->get('/text/choices/{id_text}', function($request, $response) {
+    $data = getTextChoices($request->resource['id_text']);
 
     if(!$data){
         $response->setData(['error'=>"Le texte n'existe pas"]);
