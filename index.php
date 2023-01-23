@@ -59,6 +59,19 @@ $small->get('/tale', function($request, $response) {
     return $response;
 });
 
+//get tale by id
+$small->get('/talebyid/{id}', function($request, $response) {
+    $data = getTale($request->resource['id']);
+
+    if(!$data){
+        $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+
 //get author of tale
 $small->get('/tale/author/{id_tale}', function($request, $response) {
     $data = getTaleAuthor($request->resource['id_tale']);

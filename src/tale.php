@@ -62,6 +62,16 @@ function getTextChoices($id_text){
     return $result; 
 }
 
+function getTale($id_tale){
+    $PDO = getPDO();
+    $sth = $PDO->prepare("SELECT id_tale, id_first_text, title FROM tales WHERE id_tale = :id");
+
+    $sth->execute(array('id' => $id_tale));
+    
+    $result = $sth->fetch(PDO::FETCH_ASSOC);
+    return $result; 
+}
+
 // function getTextChoicesId(){
 //     $PDO = getPDO();
 //     $sth = $PDO->prepare("SELECT id_choice FROM talechoices WHERE id_text_previous = :id)");
