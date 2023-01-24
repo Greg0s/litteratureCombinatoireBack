@@ -112,4 +112,19 @@ $small->get('/author/{idAuthor}', function($request, $response) {
     return $response;
 });
 
+
+
+//gets random pack of bristols and returns an array with all the texts
+$small->get('/bristols/{idBristolGroup}', function($request, $response) {
+    $data = shuffleTexts($request->resource['idBristolGroup']);
+
+    if(!$data){
+        $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+
 ?>
