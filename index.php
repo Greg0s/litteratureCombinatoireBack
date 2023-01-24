@@ -120,23 +120,8 @@ $small->get('/text/choices/{id_text}', function($request, $response) {
 /* ----- NARRATIONS ----- */
 
 //get random narration
-/*
-$small->get('/narration', function($request, $response) {
-    $data = getRandomNarration();
-
-    if(!$data){
-        $response->setData(['error'=>"La narration n'existe pas"]);
-    }else{
-        $response->setData($data);
-    }
-
-    return $response;
-}); */
-
-//get narration by
-$small->get('/narrationrandtext/{num}', function($request, $response) {
+$small->get('/narrationrand/{num}', function($request, $response) {
     $data = getRandomNarrationText($request->resource['num']);
-
     if(!$data){
         $response->setData(['error'=>"La narration n'existe pas"]);
     }else{

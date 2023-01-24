@@ -12,6 +12,7 @@ function getRandomNarrationText($num) {
     return $result;
 }
 
+/*
 function getRandomNarration() {
     $PDO = getPDO();
     $sth = $PDO->prepare("SELECT * FROM narrations ORDER BY RAND() LIMIT 1");
@@ -20,7 +21,7 @@ function getRandomNarration() {
     
     $result = $sth->fetch(PDO::FETCH_ASSOC);
     return $result;
-}
+} */
 
 
 function getNarrationGroup($id_narration) {
