@@ -10,18 +10,18 @@ require_once('init.php');
     
     $result = $sth->fetch(PDO::FETCH_ASSOC);
     return $result;
-}
+}*/
 
-//selects all the id's of the bristols
-function selectBristolsID() {
+
+//selects a random serie of bristols
+function selectSerieID() {
 
     $PDO = getPDO();
-    $sth = $PDO->prepare("SELECT id_bristol FROM bristols");
+    $sth = $PDO->prepare("SELECT id_bristol FROM bristols ORDER BY Rand()");
     $sth->execute(array('id'=>$id));
-
     $result = $sth->fetch(PDO::FETCH_ASSOC);
     return $result;
-}*/
+}
 
 
 //returns an array with all the texts with the same bristol Id (ie from the same author)
@@ -33,13 +33,6 @@ function getbristolsFromID($id){
     return $result;
 }
 
-
-//shuffle the array with all the id's and returns an id
-/*function ShuffleIds(){
-    $ids = selectBristolsID();
-    shuffle($id);
-    return $id;
-}*/
 
 //shuffles the array with all the texts from the same bristol
 function shuffleTexts($id)
