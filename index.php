@@ -20,6 +20,7 @@ $small->get('/', function($request, $response) {
     return $response;
 });
 
+<<<<<<< HEAD
 //get random haiku
 $small->get('/haiku', function($request, $response) {
     $data = getRandomHaiku();
@@ -32,13 +33,16 @@ $small->get('/haiku', function($request, $response) {
 
     return $response;
 });
+=======
+/* ----- HAÏKUS ----- */
+>>>>>>> 7cb330d973167364a1c38515fa74cfd9e23d11a2
 
 //get random verse of haiku
 $small->post('/haiku/text', function($request, $response) {
      $data = getRandomHaikuText($request->params['num'], $request->params['group_num']);
  
      if(!$data){
-         $response->setData(['error'=>"Le texte n'existe pas"]);
+         $response->setData(['error'=>"Le haïku n'existe pas"]);
      }else{
          $response->setData($data);
      }
@@ -46,6 +50,7 @@ $small->post('/haiku/text', function($request, $response) {
      return $response;
  });
 
+<<<<<<< HEAD
  //get haiku author group
 $small->get('/haiku/authorGroup/{group_num}', function($request, $response) {
     $data = getAuthorsGroup($request->resource['group_num']);
@@ -71,19 +76,28 @@ $small->get('/haiku/authorGroup/{group_num}', function($request, $response) {
 
     return $response;
 });
+=======
+ /* ----- SONNETS ----- */
+>>>>>>> 7cb330d973167364a1c38515fa74cfd9e23d11a2
 
  //get random verse of sonnet
 $small->get('/sonnet/{num}', function($request, $response) {
     $data = getRandomSonnetText($request->resource['num']);
 
     if(!$data){
+<<<<<<< HEAD
         $response->setData(['error'=>"Le vers de sonnet n'existe pas"]);
+=======
+        $response->setData(['error'=>"Le sonnet n'existe pas"]);
+>>>>>>> 7cb330d973167364a1c38515fa74cfd9e23d11a2
     }else{
         $response->setData($data);
     }
 
     return $response;
 });
+
+/* ----- TALES ----- */
 
 //get random id of tale + its title
 $small->get('/tale', function($request, $response) {
@@ -103,7 +117,11 @@ $small->get('/talebyid/{id}', function($request, $response) {
     $data = getTale($request->resource['id']);
 
     if(!$data){
+<<<<<<< HEAD
         $response->setData(['error'=>"Le conte n'existe pas"]);
+=======
+        $response->setData(['error'=>"Cet id de conte n'existe pas"]);
+>>>>>>> 7cb330d973167364a1c38515fa74cfd9e23d11a2
     }else{
         $response->setData($data);
     }
@@ -116,7 +134,11 @@ $small->get('/tale/author/{id_tale}', function($request, $response) {
     $data = getTaleAuthor($request->resource['id_tale']);
 
     if(!$data){
+<<<<<<< HEAD
         $response->setData(['error'=>"L'auteur n'existe pas"]);
+=======
+        $response->setData(['error'=>"Cet auteur de conte n'existe pas"]);
+>>>>>>> 7cb330d973167364a1c38515fa74cfd9e23d11a2
     }else{
         $response->setData($data);
     }
@@ -129,7 +151,7 @@ $small->get('/tale/text/{id_text}', function($request, $response) {
     $data = getTaleText($request->resource['id_text']);
 
     if(!$data){
-        $response->setData(['error'=>"Le texte n'existe pas"]);
+        $response->setData(['error'=>"Le texte de conte n'existe pas"]);
     }else{
         $response->setData($data);
     }
@@ -142,7 +164,11 @@ $small->get('/text/choices/{id_text}', function($request, $response) {
     $data = getTextChoices($request->resource['id_text']);
 
     if(!$data){
+<<<<<<< HEAD
         $response->setData(['error'=>"Les choix n'existent pas"]);
+=======
+        $response->setData(['error'=>"Ce choix n'existe pas"]);
+>>>>>>> 7cb330d973167364a1c38515fa74cfd9e23d11a2
     }else{
         $response->setData($data);
     }
@@ -150,19 +176,43 @@ $small->get('/text/choices/{id_text}', function($request, $response) {
     return $response;
 });
     
-    
-//get random verse of narration
-$small->get('/narration/{num}', function($request, $response) {
+/* ----- NARRATIONS ----- */
+
+//get random narration
+$small->get('/narrationrand/{num}', function($request, $response) {
     $data = getRandomNarrationText($request->resource['num']);
-
     if(!$data){
-        $response->setData(['error'=>"Le texte n'existe pas"]);
+        $response->setData(['error'=>"La narration n'existe pas"]);
     }else{
         $response->setData($data);
     }
 
     return $response;
 });
+
+//get group of narration
+$small->get('/narration/group/{id_narration}', function($request, $response) {
+    $data = getNarrationGroup($request->resource['id_narration']);
+    if(!$data){
+        $response->setData(['error'=>"Le groupe n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+    return $response;
+});
+
+//get author of narration
+$small->get('/narration/authors/{id_narration}', function($request, $response) {
+    $data = getNarrationAuthors($request->resource['id_narration']);
+    if(!$data){
+        $response->setData(['error'=>"Cet auteur de narration n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+    return $response;
+});
+
+/* ----- AUTHORS ----- */
 
 //get author name from its id
 $small->get('/author/{idAuthor}', function($request, $response) {
