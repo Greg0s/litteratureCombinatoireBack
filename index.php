@@ -115,7 +115,7 @@ $small->get('/author/{idAuthor}', function($request, $response) {
 
 //gets the random Id of a serie of bristols
 $small->get('/bristols', function($request, $response) {
-    $data = selectSerieID();
+    $data = getRandomSerieID();
     if(!$data){
         $response->setData(['error'=>"La série de bristols n'existe pas"]);
     }else{
