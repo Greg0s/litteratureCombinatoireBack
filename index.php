@@ -20,7 +20,6 @@ $small->get('/', function($request, $response) {
     return $response;
 });
 
-<<<<<<< HEAD
 //get random haiku
 $small->get('/haiku', function($request, $response) {
     $data = getRandomHaiku();
@@ -33,9 +32,7 @@ $small->get('/haiku', function($request, $response) {
 
     return $response;
 });
-=======
 /* ----- HAÏKUS ----- */
->>>>>>> 7cb330d973167364a1c38515fa74cfd9e23d11a2
 
 //get random verse of haiku
 $small->post('/haiku/text', function($request, $response) {
@@ -50,7 +47,6 @@ $small->post('/haiku/text', function($request, $response) {
      return $response;
  });
 
-<<<<<<< HEAD
  //get haiku author group
 $small->get('/haiku/authorGroup/{group_num}', function($request, $response) {
     $data = getAuthorsGroup($request->resource['group_num']);
@@ -76,20 +72,14 @@ $small->get('/haiku/authorGroup/{group_num}', function($request, $response) {
 
     return $response;
 });
-=======
  /* ----- SONNETS ----- */
->>>>>>> 7cb330d973167364a1c38515fa74cfd9e23d11a2
 
  //get random verse of sonnet
 $small->get('/sonnet/{num}', function($request, $response) {
     $data = getRandomSonnetText($request->resource['num']);
 
     if(!$data){
-<<<<<<< HEAD
         $response->setData(['error'=>"Le vers de sonnet n'existe pas"]);
-=======
-        $response->setData(['error'=>"Le sonnet n'existe pas"]);
->>>>>>> 7cb330d973167364a1c38515fa74cfd9e23d11a2
     }else{
         $response->setData($data);
     }
