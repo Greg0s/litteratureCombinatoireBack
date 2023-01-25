@@ -186,4 +186,34 @@ $small->get('/author/{idAuthor}', function($request, $response) {
     return $response;
 });
 
+
+//gets the random Id of a serie of bristols
+$small->get('/bristols', function($request, $response) {
+    $data = getRandomSerieID();
+    if(!$data){
+        $response->setData(['error'=>"La série de bristols n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+    return $response;
+});
+
+
+//get texts of bristols shuffled
+$small->get('/bristols/serie/{id}', function($request, $response) {
+    $data = shuffleTexts($request->resource['idBristolGroup']);
+
+    if(!$data){
+        $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+
+
+
+
+
 ?>
