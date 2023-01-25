@@ -188,7 +188,6 @@ $small->get('/narration', function($request, $response) {
 //get random verse of narration
 $small->post('/narration/text', function($request, $response) {
      $data = getRandomNarrationText($request->params['num'], $request->params['group_num']);
- 
      if(!$data){
          $response->setData(['error'=>"Le texte n'existe pas"]);
      }else{
