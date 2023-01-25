@@ -15,9 +15,8 @@ require_once('init.php');
 
 //selects a random serie of bristols
 function getRandomSerieID() {
-
     $PDO = getPDO();
-    $sth = $PDO->prepare("SELECT id_bristol FROM bristols ORDER BY Rand()");
+    $sth = $PDO->prepare("SELECT id_bristol, id_author FROM bristols ORDER BY Rand()");
     $sth->execute();
     $result = $sth->fetch(PDO::FETCH_ASSOC);
     return $result;
@@ -27,7 +26,7 @@ function getRandomSerieID() {
 //returns an array with all the texts with the same bristol Id (ie from the same author)
 function getTextsFromSerie($id){
     $PDO = getPDO();
-    $sth = $PDO->prepare("SELECT text FROM bristoltexts JOIN bristollinks ON bristoltexts.id_text = bristollinks.id_text WHERE id_bristol = :id");
+    $sth = $PDO->prepare("SELECT text FROM bristoltexts WHERE id_bristol = :id");
     $sth->execute(array('id'=>$id));
     $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     return $result;
