@@ -158,12 +158,65 @@ $small->get('/text/choices/{id_text}', function($request, $response) {
     
 /* ----- NARRATIONS ----- */
 
+/*
 //get random verse of narration
 $small->get('/narrationrand/{num}', function($request, $response) {
     $data = getRandomNarrationText($request->resource['num']);
 
     if(!$data){
         $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+}); */
+
+//get random narration
+$small->get('/narration', function($request, $response) {
+    $data = getRandomNarration();
+
+    if(!$data){
+        $response->setData(['error'=>"Erreur narration"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+
+//get random verse of narration
+$small->post('/narration/text', function($request, $response) {
+     $data = getRandomNarrationText($request->params['num'], $request->params['group_num']);
+ 
+     if(!$data){
+         $response->setData(['error'=>"Le texte n'existe pas"]);
+     }else{
+         $response->setData($data);
+     }
+ 
+     return $response;
+ });
+
+ //get narration author group
+ $small->get('/narration/authorGroup/{group_num}', function($request, $response) {
+    $data = getAuthorsGroup($request->resource['group_num']);
+
+    if(!$data){
+        $response->setData(['error'=>"L'auteur n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+
+ //get narration author
+ $small->get('/narration/author/{id_author}', function($request, $response) {
+    $data = getAuthorHaiku($request->resource['id_author']);
+
+    if(!$data){
+        $response->setData(['error'=>"L'auteur n'existe pas"]);
     }else{
         $response->setData($data);
     }
