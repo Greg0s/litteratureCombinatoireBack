@@ -20,6 +20,8 @@ $small->get('/', function($request, $response) {
     return $response;
 });
 
+/* ----- HAIKUS ----- */
+
 //get random haiku
 $small->get('/haiku', function($request, $response) {
     $data = getRandomHaiku();
@@ -72,6 +74,8 @@ $small->get('/haiku/authorGroup/{group_num}', function($request, $response) {
     return $response;
 });
 
+/* ----- SONNETS ----- */
+
  //get random verse of sonnet
 $small->get('/sonnet/{num}', function($request, $response) {
     $data = getRandomSonnetText($request->resource['num']);
@@ -84,6 +88,8 @@ $small->get('/sonnet/{num}', function($request, $response) {
 
     return $response;
 });
+
+/* ----- TALES ----- */
 
 //get random id of tale + its title
 $small->get('/tale', function($request, $response) {
@@ -150,9 +156,10 @@ $small->get('/text/choices/{id_text}', function($request, $response) {
     return $response;
 });
     
-    
+/* ----- NARRATIONS ----- */
+
 //get random verse of narration
-$small->get('/narration/{num}', function($request, $response) {
+$small->get('/narrationrand/{num}', function($request, $response) {
     $data = getRandomNarrationText($request->resource['num']);
 
     if(!$data){
@@ -163,6 +170,8 @@ $small->get('/narration/{num}', function($request, $response) {
 
     return $response;
 });
+
+/* ----- AUTHORS ----- */
 
 //get author name from its id
 $small->get('/author/{idAuthor}', function($request, $response) {
