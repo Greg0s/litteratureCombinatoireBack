@@ -191,7 +191,7 @@ $small->get('/bristols', function($request, $response) {
 
 
 //get texts of bristols shuffled
-$small->get('/bristols/serie/{id}', function($request, $response) {
+$small->get('/bristols/serie/{idBristolGroup}', function($request, $response) {
     $data = shuffleTexts($request->resource['idBristolGroup']);
 
     if(!$data){
