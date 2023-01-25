@@ -22,7 +22,7 @@ function getRandomHaikuText($num, $group_num) {
     return $result;
 }
 
-function getAuthorsGroup($group_num){
+function getAuthorsGroupHaiku($group_num){
     $PDO = getPDO();
     $sth = $PDO->prepare("SELECT DISTINCT id_author FROM haikus WHERE group_num = :groupnum");
 

@@ -50,7 +50,7 @@ $small->post('/haiku/text', function($request, $response) {
 
  //get haiku author group
 $small->get('/haiku/authorGroup/{group_num}', function($request, $response) {
-    $data = getAuthorsGroup($request->resource['group_num']);
+    $data = getAuthorsGroupHaiku($request->resource['group_num']);
 
     if(!$data){
         $response->setData(['error'=>"L'auteur n'existe pas"]);
@@ -199,7 +199,7 @@ $small->post('/narration/text', function($request, $response) {
 
  //get narration author group
  $small->get('/narration/authorGroup/{group_num}', function($request, $response) {
-    $data = getAuthorsGroup($request->resource['group_num']);
+    $data = getAuthorsGroupNarration($request->resource['group_num']);
 
     if(!$data){
         $response->setData(['error'=>"L'auteur n'existe pas"]);
