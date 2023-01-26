@@ -22,6 +22,7 @@ function getRandomHaiku(){
 //     return $result;
 // }
 
+//get text from id haiku and a num
 function getRandomHaikuText($num, $id_haiku) {
     $PDO = getPDO();
     $sth = $PDO->prepare("SELECT text FROM haikutexts WHERE text_num = :num AND id_haiku = :id_haiku ORDER BY RAND() LIMIT 1");
@@ -32,6 +33,7 @@ function getRandomHaikuText($num, $id_haiku) {
     return $result;
 }
 
+//get a random id haiku from a group num
 function getHaikuTextId($group_num) {
     $PDO = getPDO();
     $sth = $PDO->prepare("SELECT id_haiku from haikus WHERE group_num = :group_num ORDER BY RAND() LIMIT 1");

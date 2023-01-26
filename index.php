@@ -211,17 +211,43 @@ $small->get('/narration', function($request, $response) {
     return $response;
 });
 
-//get random verse of narration
-$small->post('/narration/text', function($request, $response) {
-     $data = getRandomNarrationText($request->params['num'], $request->params['group_num']);
-     if(!$data){
-         $response->setData(['error'=>"Le texte n'existe pas"]);
-     }else{
-         $response->setData($data);
-     }
+// //get random verse of narration
+// $small->post('/narration/text', function($request, $response) {
+//      $data = getRandomNarrationText($request->params['num'], $request->params['group_num']);
+//      if(!$data){
+//          $response->setData(['error'=>"Le texte n'existe pas"]);
+//      }else{
+//          $response->setData($data);
+//      }
  
-     return $response;
- });
+//      return $response;
+//  });
+
+//get text id of a group
+$small->get('/narration/textGroup/{group_num}', function($request, $response) {
+    $data = getNArrationTextId($request->resource['group_num']);
+
+    if(!$data){
+        $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+
+//get text from id text
+$small->post('/narration/text', function($request, $response) {
+    $data = getRandomNarrationText($request->params['num'], $request->params['id_narration']);
+
+    if(!$data){
+        $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
 
  //get narration author group
  $small->get('/narration/authorGroup/{group_num}', function($request, $response) {

@@ -12,11 +12,33 @@ function getRandomNarration(){
     return $result;
 }
 
-function getRandomNarrationText($num, $group_num) {
-    $PDO = getPDO();
-    $sth = $PDO->prepare("SELECT text, id_narration FROM narrationtexts WHERE text_num = :num AND id_text = (SELECT id_text from narrations WHERE group_num = :group_num ORDER BY RAND() LIMIT 1) ORDER BY RAND() LIMIT 1");
+// function getRandomNarrationText($num, $group_num) {
+//     $PDO = getPDO();
+//     $sth = $PDO->prepare("SELECT text, id_narration FROM narrationtexts WHERE text_num = :num AND id_text = (SELECT id_text from narrations WHERE group_num = :group_num ORDER BY RAND() LIMIT 1) ORDER BY RAND() LIMIT 1");
 
-    $sth->execute(array('num' => $num, 'group_num' => $group_num));
+//     $sth->execute(array('num' => $num, 'group_num' => $group_num));
+    
+//     $result = $sth->fetch(PDO::FETCH_ASSOC);
+//     return $result;
+// }
+
+//get text from id narration and a num
+function getRandomNarrationText($num, $id_narration) {
+    $PDO = getPDO();
+    $sth = $PDO->prepare("SELECT text FROM narrationtexts WHERE text_num = :num AND id_narration = :id_narration ORDER BY RAND() LIMIT 1");
+
+    $sth->execute(array('num' => $num, 'id_narration' => $id_narration));
+    
+    $result = $sth->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+//get a random id narration from a group num
+function getNarrationTextId($group_num) {
+    $PDO = getPDO();
+    $sth = $PDO->prepare("SELECT id_narration from narrations WHERE group_num = :group_num ORDER BY RAND() LIMIT 1");
+
+    $sth->execute(array('group_num' => $group_num));
     
     $result = $sth->fetch(PDO::FETCH_ASSOC);
     return $result;
