@@ -36,17 +36,43 @@ $small->get('/haiku', function($request, $response) {
 });
 
 //get random verse of haiku
+// $small->post('/haiku/text', function($request, $response) {
+//      $data = getRandomHaikuText($request->params['num'], $request->params['group_num']);
+ 
+//      if(!$data){
+//          $response->setData(['error'=>"Le texte n'existe pas"]);
+//      }else{
+//          $response->setData($data);
+//      }
+ 
+//      return $response;
+//  });
+
+//get text id of a group
+$small->get('/haiku/textGroup/{group_num}', function($request, $response) {
+    $data = getHaikuTextId($request->resource['group_num']);
+
+    if(!$data){
+        $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
+
+//get text from id text
 $small->post('/haiku/text', function($request, $response) {
-     $data = getRandomHaikuText($request->params['num'], $request->params['group_num']);
- 
-     if(!$data){
-         $response->setData(['error'=>"Le texte n'existe pas"]);
-     }else{
-         $response->setData($data);
-     }
- 
-     return $response;
- });
+    $data = getRandomHaikuText($request->params['num'], $request->params['id_haiku']);
+
+    if(!$data){
+        $response->setData(['error'=>"Le texte n'existe pas"]);
+    }else{
+        $response->setData($data);
+    }
+
+    return $response;
+});
 
  //get haiku author group
 $small->get('/haiku/authorGroup/{group_num}', function($request, $response) {
