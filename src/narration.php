@@ -32,16 +32,6 @@ function getNarrationGroup($group_num){
     return $result;
 }
 
-function getAuthorsGroupNarration($group_num){
-    $PDO = getPDO();
-    $sth = $PDO->prepare("SELECT DISTINCT id_author FROM narrations WHERE group_num = :groupnum");
-
-    $sth->execute(array('groupnum' => $group_num));
-    
-    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
-    return $result;
-}
-
 function getAuthorNarration($id_author){
     $PDO = getPDO();
     $sth = $PDO->prepare("SELECT first_name, name FROM authors WHERE id_author = :id");
@@ -49,6 +39,16 @@ function getAuthorNarration($id_author){
     $sth->execute(array('id' => $id_author));
     
     $result = $sth->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function getAuthorsGroupNarration($group_num){
+    $PDO = getPDO();
+    $sth = $PDO->prepare("SELECT DISTINCT id_author FROM narrations WHERE group_num = :group_num");
+
+    $sth->execute(array('group_num' => $group_num));
+    
+    $result = $sth->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
 
